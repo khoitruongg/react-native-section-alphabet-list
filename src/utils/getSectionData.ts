@@ -37,7 +37,7 @@ const getAlphabetEntrySet = (data: IData[], validLettersMap: ILetterMap) => {
   const alphabetSet: IAlphabetSet = {}
 
   data.forEach((item) => {
-    const letter = getItemFirstLetter(item.value, validLettersMap)
+    const letter = getItemFirstLetter(item, validLettersMap)
     if (!letter) return
 
     if (!alphabetSet[letter]) {
@@ -50,10 +50,15 @@ const getAlphabetEntrySet = (data: IData[], validLettersMap: ILetterMap) => {
   return Object.entries(alphabetSet)
 };
 
-const getItemFirstLetter = (value: string, validLettersMap: ILetterMap) => {
+const getItemFirstLetter = (item: IData, validLettersMap: ILetterMap) => {
+  let value = item.value
   const firstChar = value.substring(0, 1)
   const isValidLetter = validLettersMap[firstChar.toLowerCase()]
 
+  if(item?.favorite){
+    return 'favorite'
+  }
+  
   if (isValidLetter) {
     return firstChar.toUpperCase()
   }
