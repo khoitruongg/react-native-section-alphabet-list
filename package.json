@@ -10,8 +10,7 @@
   "scripts": {
     "test": "jest --config jest.config.js",
     "lint": "eslint",
-    "build": "rm -rf dist && tsc",
-    "prepare" : "yarn build"
+    "build": "rm -rf dist && tsc"
   },
   "repository": {
     "type": "git",
