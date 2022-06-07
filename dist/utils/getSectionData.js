@@ -62,6 +62,12 @@ var isLetterHash = function (charOne, charTwo) { return charOne !== "#" && charT
 var sortSectionsByCharIndex = function (a, b, validLettersMap, uncategorizedAtTop) {
     var charA = a.title.toLowerCase();
     var charB = b.title.toLowerCase();
+    if (charA === 'favorite') {
+        return -1;
+    }
+    if (charB === 'favorite') {
+        return 1;
+    }
     var isBHash = isLetterHash(charA, charB);
     if (isBHash)
         return uncategorizedAtTop ? 1 : -1;

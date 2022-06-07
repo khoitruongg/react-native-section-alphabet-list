@@ -55,10 +55,10 @@ const getItemFirstLetter = (item: IData, validLettersMap: ILetterMap) => {
   const firstChar = value.substring(0, 1)
   const isValidLetter = validLettersMap[firstChar.toLowerCase()]
 
-  if(item?.favorite){
+  if (item?.favorite) {
     return 'favorite'
   }
-  
+
   if (isValidLetter) {
     return firstChar.toUpperCase()
   }
@@ -78,6 +78,14 @@ const isLetterHash = (charOne: string, charTwo: string) => charOne !== "#" && ch
 const sortSectionsByCharIndex = (a: IEntry, b: IEntry, validLettersMap: ILetterMap, uncategorizedAtTop: boolean) => {
   const charA = a.title.toLowerCase()
   const charB = b.title.toLowerCase()
+
+  if (charA === 'favorite') {
+    return -1
+  }
+
+  if (charB === 'favorite') {
+    return 1
+  }
 
   const isBHash = isLetterHash(charA, charB)
   if (isBHash) return uncategorizedAtTop ? 1 : -1;
